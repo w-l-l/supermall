@@ -8,6 +8,10 @@ module.exports = {
         'network': '@/network',
         'views': '@/views'
       }
+    },
+    devServer: {
+      open: true,
+      port: 3000
     }
   }
 }
