@@ -25,7 +25,7 @@
 
 <script>
 import TabBar from 'components/common/tabBar/TabBar'
-import TabBarItem from 'components/common/tabBarItem/TabBarItem'
+import TabBarItem from 'components/common/tabBar/TabBarItem'
 
 export default {
   name: 'MainTabBar',
