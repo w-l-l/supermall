@@ -3,14 +3,18 @@
     <nav-bar class="home-nav">
       <div slot="center">购物街</div>
     </nav-bar>
-    <home-swiper :banners="banners"/>
-    <recommend-view :recommends="recommends"/>
-    <feature-view/>
+    <div class="content">
+      <home-swiper :banners="banners" />
+      <recommend-view :recommends="recommends" />
+      <feature-view />
+      <tab-control class="tab-control" :titles="titles" />
+    </div>
   </div>
 </template>
 
 <script>
 import NavBar from 'components/common/navBar/NavBar'
+import TabControl from 'components/content/tabControl/TabControl'
 
 import HomeSwiper from './childComponents/HomeSwiper'
 import RecommendView from './childComponents/RecommendView'
@@ -24,7 +28,8 @@ export default {
     NavBar,
     HomeSwiper,
     RecommendView,
-    FeatureView
+    FeatureView,
+    TabControl
   },
   created() {
     this.getHomeMultidata()
@@ -32,7 +37,8 @@ export default {
   data() {
     return {
       banners: [],
-      recommends: []
+      recommends: [],
+      titles: ['流行', '新款', '精选']
     }
   },
   methods: {
@@ -49,9 +55,30 @@ export default {
 
 <style lang="less" scoped>
 #home {
+  position: relative;
+  width: 100%;
+  height: 100vh;
   .home-nav {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 9;
     background-color: var(--color-tint);
     color: #fff;
+  }
+  .content {
+    position: absolute;
+    top: 44px;
+    bottom: 49px;
+    left: 0;
+    right: 0;
+    overflow-y: auto;
+    .tab-control {
+      position: sticky;
+      top: 0;
+      z-index: 9;
+    }
   }
 }
 </style>
