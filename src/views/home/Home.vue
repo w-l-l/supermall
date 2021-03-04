@@ -4,19 +4,22 @@
       <div slot="center">购物街</div>
     </nav-bar>
     <home-swiper :banners="banners"/>
+    <recommend-view :recommends="recommends"/>
   </div>
 </template>
 
 <script>
 import NavBar from 'components/common/navBar/NavBar'
 import HomeSwiper from './childComponents/HomeSwiper'
+import recommendView from './childComponents/recommendView'
 import { getHomeMultidata } from 'network/home'
 
 export default {
   name: 'Home',
   components: {
     NavBar,
-    HomeSwiper
+    HomeSwiper,
+    recommendView
   },
   created() {
     this.getHomeMultidata()
