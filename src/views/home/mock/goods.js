@@ -21,9 +21,13 @@ export function mockGoodsList(type, page) {
       cfav: 999
     }
   }
-  return {
-    data: {
-      list: new Array(page * 10).fill(goods[type])
-    }
-  }
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve({
+        data: {
+          list: new Array(page * 10).fill(goods[type])
+        }
+      })
+    }, 4000)
+  })
 }

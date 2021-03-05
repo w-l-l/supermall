@@ -3,13 +3,13 @@
     <nav-bar class="home-nav">
       <div slot="center">购物街</div>
     </nav-bar>
-    <div class="content">
+    <scroll class="scroll" ref="scroll" :probe-type="3" @scroll="contentScroll" pull-up-load @pullingUp="loadMore">
       <home-swiper :banners="banners" />
       <recommend-view :recommends="recommends" />
       <feature-view />
       <tab-control class="tab-control" :titles="titles" @tabClick="tabClick" />
       <goods-list :goods="showGoods" />
-    </div>
+    </scroll>
   </div>
 </template>
 
@@ -17,6 +17,7 @@
 import NavBar from 'components/common/navBar/NavBar'
 import TabControl from 'components/content/tabControl/TabControl'
 import GoodsList from 'components/content/goods/GoodsList'
+import Scroll from 'components/common/scroll/Scroll'
 
 import HomeSwiper from './childComponents/HomeSwiper'
 import RecommendView from './childComponents/RecommendView'
@@ -33,7 +34,8 @@ export default {
     RecommendView,
     FeatureView,
     TabControl,
-    GoodsList
+    GoodsList,
+    Scroll
   },
   created() {
     this.getHomeMultidata()
@@ -74,10 +76,20 @@ export default {
       const res = await mockGoodsList(type, page)
       this.goods[type].list.push(...res.data.list)
       this.goods[type].page++
+      this.$refs.scroll.refresh()
     },
     // tabControl切换
     tabClick(index) {
       this.currentType = ['pop', 'new', 'sell'][index]
+    },
+    // 页面滚动
+    contentScroll(position) {
+      console.log(position)
+    },
+    // 加载更多
+    async loadMore() {
+      await this.getHomeGoods(this.currentType)
+      this.$refs.scroll.finishPullUp()
     }
   }
 }
@@ -97,13 +109,13 @@ export default {
     background-color: var(--color-tint);
     color: #fff;
   }
-  .content {
+  .scroll {
     position: absolute;
     top: 44px;
     bottom: 49px;
     left: 0;
     right: 0;
-    overflow-y: auto;
+    overflow: hidden;
     .tab-control {
       position: sticky;
       top: 0;
