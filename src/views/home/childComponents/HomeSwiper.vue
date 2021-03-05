@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     transitionEnd(index) {
-      console.log(index)
+      this.$emit('transitionEnd', index)
     }
   }
 }

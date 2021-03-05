@@ -7,7 +7,8 @@
       <home-swiper :banners="banners" />
       <recommend-view :recommends="recommends" />
       <feature-view />
-      <tab-control class="tab-control" :titles="titles" />
+      <tab-control class="tab-control" :titles="titles" @tabClick="tabClick" />
+      <goods-list :goods="showGoods" />
     </div>
   </div>
 </template>
@@ -15,12 +16,14 @@
 <script>
 import NavBar from 'components/common/navBar/NavBar'
 import TabControl from 'components/content/tabControl/TabControl'
+import GoodsList from 'components/content/goods/GoodsList'
 
 import HomeSwiper from './childComponents/HomeSwiper'
 import RecommendView from './childComponents/RecommendView'
 import FeatureView from './childComponents/FeatureView'
 
-import { getHomeMultidata } from 'network/home'
+import { getHomeMultidata, getHomeGoods } from 'network/home'
+import { mockGoodsList } from './mock/goods'
 
 export default {
   name: 'Home',
@@ -29,16 +32,31 @@ export default {
     HomeSwiper,
     RecommendView,
     FeatureView,
-    TabControl
+    TabControl,
+    GoodsList
   },
   created() {
     this.getHomeMultidata()
+    this.getHomeGoods('pop')
+    this.getHomeGoods('new')
+    this.getHomeGoods('sell')
   },
   data() {
     return {
       banners: [],
       recommends: [],
-      titles: ['流行', '新款', '精选']
+      titles: ['流行', '新款', '精选'],
+      goods: {
+        pop: { page: 0, list: [] },
+        new: { page: 0, list: [] },
+        sell: { page: 0, list: [] }
+      },
+      currentType: 'pop'
+    }
+  },
+  computed: {
+    showGoods() {
+      return this.goods[this.currentType].list
     }
   },
   methods: {
@@ -48,6 +66,18 @@ export default {
       const { banner, recommend } = res.data || []
       this.banners = banner.list || []
       this.recommends = recommend.list || []
+    },
+    // 请求商品数据
+    async getHomeGoods(type) {
+      const page = this.goods[type].page + 1
+      // const res = await getHomeGoods(type, page)
+      const res = await mockGoodsList(type, page)
+      this.goods[type].list.push(...res.data.list)
+      this.goods[type].page++
+    },
+    // tabControl切换
+    tabClick(index) {
+      this.currentType = ['pop', 'new', 'sell'][index]
     }
   }
 }
