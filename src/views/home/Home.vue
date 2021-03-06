@@ -85,6 +85,7 @@ export default {
     // tabControl切换
     tabClick(index) {
       this.currentType = ['pop', 'new', 'sell'][index]
+      this.$refs.scroll && this.$refs.scroll.refresh()
     },
     // 页面滚动
     contentScroll(position) {
