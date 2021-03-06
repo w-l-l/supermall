@@ -10,6 +10,7 @@
       <tab-control class="tab-control" :titles="titles" @tabClick="tabClick" />
       <goods-list :goods="showGoods" />
     </scroll>
+    <back-top @click.native="backClick" v-show="isShow"></back-top>
   </div>
 </template>
 
@@ -18,6 +19,7 @@ import NavBar from 'components/common/navBar/NavBar'
 import TabControl from 'components/content/tabControl/TabControl'
 import GoodsList from 'components/content/goods/GoodsList'
 import Scroll from 'components/common/scroll/Scroll'
+import BackTop from 'components/content/backTop/BackTop'
 
 import HomeSwiper from './childComponents/HomeSwiper'
 import RecommendView from './childComponents/RecommendView'
@@ -35,7 +37,8 @@ export default {
     FeatureView,
     TabControl,
     GoodsList,
-    Scroll
+    Scroll,
+    BackTop
   },
   created() {
     this.getHomeMultidata()
@@ -53,7 +56,8 @@ export default {
         new: { page: 0, list: [] },
         sell: { page: 0, list: [] }
       },
-      currentType: 'pop'
+      currentType: 'pop',
+      isShow: false
     }
   },
   computed: {
@@ -76,7 +80,7 @@ export default {
       const res = await mockGoodsList(type, page)
       this.goods[type].list.push(...res.data.list)
       this.goods[type].page++
-      this.$refs.scroll.refresh()
+      this.$refs.scroll && this.$refs.scroll.refresh()
     },
     // tabControl切换
     tabClick(index) {
@@ -84,12 +88,16 @@ export default {
     },
     // 页面滚动
     contentScroll(position) {
-      console.log(position)
+      this.isShow = -position.y > 1000
     },
     // 加载更多
     async loadMore() {
       await this.getHomeGoods(this.currentType)
       this.$refs.scroll.finishPullUp()
+    },
+    // 回到顶部
+    backClick() {
+      this.$refs.scroll.scrollTo(0, 0)
     }
   }
 }

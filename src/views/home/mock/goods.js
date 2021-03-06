@@ -28,6 +28,6 @@ export function mockGoodsList(type, page) {
           list: new Array(page * 10).fill(goods[type])
         }
       })
-    }, 4000)
+    }, 3000)
   })
 }
