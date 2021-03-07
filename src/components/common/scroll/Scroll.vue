@@ -31,7 +31,8 @@ export default {
     this.scroll = new BScroll(this.$refs.warpper, {
       click: true,
       probeType: this.probeType,
-      pullUpLoad: this.pullUpLoad
+      pullUpLoad: this.pullUpLoad,
+      observeImage: true
     })
     // 滚动监听
     this.scroll.on('scroll', position => this.$emit('scroll', position))
@@ -49,7 +50,7 @@ export default {
     },
     // 更新BScroll
     refresh() {
-      this.$nextTick(() => this.scroll.refresh())
+      this.scroll.refresh() 
     }
   }
 }
