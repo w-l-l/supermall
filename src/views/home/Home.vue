@@ -3,11 +3,12 @@
     <nav-bar class="home-nav">
       <div slot="center">购物街</div>
     </nav-bar>
+    <tab-control class="tab-control1" ref="tabControl1" :titles="titles" @tabClick="tabClick" v-show="isFixed" />
     <scroll class="scroll" ref="scroll" :probe-type="3" @scroll="contentScroll" pull-up-load @pullingUp="loadMore">
       <home-swiper :banners="banners" />
       <recommend-view :recommends="recommends" />
       <feature-view />
-      <tab-control class="tab-control" :titles="titles" @tabClick="tabClick" />
+      <tab-control class="tab-control2" ref="tabControl2" :titles="titles" @tabClick="tabClick" />
       <goods-list :goods="showGoods" />
     </scroll>
     <back-top @click.native="backClick" v-show="isShow"></back-top>
@@ -57,7 +58,8 @@ export default {
         sell: { page: 0, list: [] }
       },
       currentType: 'pop',
-      isShow: false
+      isShow: false,
+      isFixed: false
     }
   },
   computed: {
@@ -85,16 +87,20 @@ export default {
     // tabControl切换
     tabClick(index) {
       this.currentType = ['pop', 'new', 'sell'][index]
+      this.$refs.tabControl1.currentIndex = index
+      this.$refs.tabControl2.currentIndex = index
       this.$refs.scroll && this.$refs.scroll.refresh()
     },
     // 页面滚动
     contentScroll(position) {
-      this.isShow = -position.y > 1000
+      const y = -position.y
+      this.isFixed = y >= this.$refs.tabControl2.$el.offsetTop
+      this.isShow = y > 1000
     },
     // 加载更多
     async loadMore() {
       await this.getHomeGoods(this.currentType)
-      this.$refs.scroll.finishPullUp()
+      this.$refs.scroll && this.$refs.scroll.finishPullUp()
     },
     // 回到顶部
     backClick() {
@@ -118,6 +124,13 @@ export default {
     background-color: var(--color-tint);
     color: #fff;
   }
+  .tab-control1{
+    position: relative;
+    top: 44px;
+    left: 0;
+    right: 0;
+    z-index: 9;
+  }
   .scroll {
     position: absolute;
     top: 44px;
@@ -125,11 +138,6 @@ export default {
     left: 0;
     right: 0;
     overflow: hidden;
-    .tab-control {
-      position: sticky;
-      top: 0;
-      z-index: 9;
-    }
   }
 }
 </style>
