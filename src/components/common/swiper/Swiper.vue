@@ -81,6 +81,7 @@ export default {
     },
     // 定时器开启
     startTimer() {
+      this.stopTimer()
       this.timer = setInterval(() => {
         this.currentIndex++
         this.scrollContent(-this.currentIndex * this.totalWidth)

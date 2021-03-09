@@ -1,5 +1,5 @@
 <template>
-  <swiper :interval="3000" :animDuration="300" :moveRatio="0.25" showIndicator @transitionEnd="transitionEnd">
+  <swiper ref="swiper" :interval="3000" :animDuration="300" :moveRatio="0.25" showIndicator @transitionEnd="transitionEnd">
     <swiper-item v-for="(item, index) in banners" :key="index">
       <a :href="item.link">
         <img :src="item.image" :alt="item.title">
@@ -27,9 +27,18 @@ export default {
     SwiperItem
   },
   methods: {
+    // 轮播切换
     transitionEnd(index) {
       this.$emit('transitionEnd', index)
-    }
+    },
+    // 开启轮播
+    startTimer() {
+      this.$refs.swiper.startTimer()
+    },
+    // 停止轮播
+    stopTimer() {
+      this.$refs.swiper.stopTimer()
+    },
   }
 }
 </script>

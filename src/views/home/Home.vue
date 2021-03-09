@@ -5,7 +5,7 @@
     </nav-bar>
     <tab-control class="tab-control1" ref="tabControl1" :titles="titles" @tabClick="tabClick" v-show="isFixed" />
     <scroll class="scroll" ref="scroll" :probe-type="3" @scroll="contentScroll" pull-up-load @pullingUp="loadMore">
-      <home-swiper :banners="banners" />
+      <home-swiper ref="swiper" :banners="banners" />
       <recommend-view :recommends="recommends" />
       <feature-view />
       <tab-control class="tab-control2" ref="tabControl2" :titles="titles" @tabClick="tabClick" />
@@ -47,6 +47,19 @@ export default {
     this.getHomeGoods('new')
     this.getHomeGoods('sell')
   },
+  activated() {
+    // 页面进入开启轮播
+    this.$refs.swiper.startTimer()
+    // 页面进入滚动到之前离开时的位置
+    this.$refs.scroll.scrollTo(0, this.saveY, 0)
+    this.$refs.scroll.refresh()
+  },
+  deactivated() {
+    // 页面离开停止轮播
+    this.$refs.swiper.stopTimer()
+    // 页面离开保存当前better-scroll滚动的距离
+    this.saveY = this.$refs.scroll.getScrollY()
+  },
   data() {
     return {
       banners: [],
@@ -59,7 +72,8 @@ export default {
       },
       currentType: 'pop',
       isShow: false,
-      isFixed: false
+      isFixed: false,
+      saveY: 0
     }
   },
   computed: {

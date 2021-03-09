@@ -51,6 +51,10 @@ export default {
     // 更新BScroll
     refresh() {
       this.scroll.refresh() 
+    },
+    // 获取当前滚动的高度
+    getScrollY() {
+      return this.scroll ? this.scroll.y : 0
     }
   }
 }
