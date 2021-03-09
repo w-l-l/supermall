@@ -1,5 +1,5 @@
 <template>
-  <div class="goods-item">
+  <div class="goods-item" @click="itemClick">
     <img :src="goodsItem.src" alt="">
     <div class="goods-info">
       <p>{{ goodsItem.title }}</p>
@@ -18,6 +18,12 @@ export default {
       default() {
         return {}
       }
+    }
+  },
+  methods: {
+    // 点击图片进入详情页
+    itemClick() {
+      this.$router.push('/detail/11')
     }
   }
 }
