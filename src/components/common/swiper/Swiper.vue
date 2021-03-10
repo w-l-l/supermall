@@ -194,6 +194,7 @@ export default {
   overflow: hidden;
   .swiper {
     display: flex;
+    height: 100%;
   }
   .indicator {
     display: flex;
