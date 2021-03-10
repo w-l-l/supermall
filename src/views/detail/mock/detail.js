@@ -8,7 +8,20 @@ export function mockDetail() {
         'https://img20.360buyimg.com/da/s1180x940_jfs/t1/149422/12/10609/56353/5f86fab5E2c3fafe2/b252b8d983c43327.jpg.webp',
         'https://imgcps.jd.com/ling4/100005929367/5Lqs6YCJ5aW96LSn/5L2g5YC85b6X5oul5pyJ/p-5bd81f3682acdd181dfeb407/a2fc2fcf/cr/s/q.jpg',
         'https://img11.360buyimg.com/pop/s1180x940_jfs/t1/155528/27/20653/57960/603da32dE09998612/5689d335e6a19f1f.jpg.webp',
-      ]
+      ],
+      goods: {
+        title: '中兴 ZTE V2020 Smart孝心版 星云灰128GB全网通 高清四摄 4G双卡双待时光机老年手机老人机智能手机',
+        newPrice: 39,
+        oldPrice: 55.52,
+        discount: 7,
+        columns: ['销量88', '收藏120人', '72小时发货'],
+        services: [
+          { icon: 'https://m.360buyimg.com/babel/jfs/t1/52683/35/10394/3447/5d7739edE270aa7b3/d4d1151b09b5553b.png', name: '延误必赔' },
+          { icon: 'https://m.360buyimg.com/babel/jfs/t1/31069/34/14642/979/5cbf0665Ec7dc8223/5fee386254dd2ebc.png', name: '退货补运费' },
+          { icon: 'https://m.360buyimg.com/babel/jfs/t1/32403/22/14829/3699/5cbf0674E04723693/caa83ce9b881cd24.png', name: '全国包邮' },
+          { icon: 'https://m.360buyimg.com/babel/jfs/t1/51584/31/10221/1685/5d7739e7E1adb25cd/1d0957d7f2ae01a2.png', name: '7天无理由退货' },
+        ]
+      }
     })
   })
 }

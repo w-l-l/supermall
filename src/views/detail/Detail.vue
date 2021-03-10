@@ -3,6 +3,7 @@
     <detail-nav-bar></detail-nav-bar>
     <scroll class="scroll" ref="scroll">
       <detail-swiper :top-imgs="imgs"></detail-swiper>
+      <detail-base-info :goods="goods"></detail-base-info>
     </scroll>
   </div>
 </template>
@@ -10,6 +11,7 @@
 <script>
 import DetailNavBar from './childComps/DetailNabBar'
 import DetailSwiper from './childComps/DetailSwiper'
+import DetailBaseInfo from './childComps/DetailBaseInfo'
 
 import Scroll from 'components/common/scroll/Scroll'
 
@@ -21,7 +23,8 @@ export default {
   components: {
     DetailNavBar,
     Scroll,
-    DetailSwiper
+    DetailSwiper,
+    DetailBaseInfo
   },
   created() {
     this.id = this.$route.params.id
@@ -30,7 +33,8 @@ export default {
   data() {
     return {
       id: 0,
-      imgs: ['https://s10.mogucdn.com/mlcdn/c45406/171026_8fe9b4a7b75fe427lb94jfgee4la2_750x376.jpg']
+      imgs: [],
+      goods: {}
     }
   },
   methods: {
@@ -39,6 +43,7 @@ export default {
       // const res = await getDetail(this.id)
       const res = await mockDetail()
       this.imgs = res.imgs
+      this.goods = res.goods
     }
   }
 }
@@ -56,6 +61,7 @@ export default {
     left: 0;
     right: 0;
     bottom: 0;
+    overflow: hidden;
   }
 }
 </style>
