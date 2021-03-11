@@ -21,6 +21,17 @@ export function mockDetail() {
           { icon: 'https://m.360buyimg.com/babel/jfs/t1/32403/22/14829/3699/5cbf0674E04723693/caa83ce9b881cd24.png', name: '全国包邮' },
           { icon: 'https://m.360buyimg.com/babel/jfs/t1/51584/31/10221/1685/5d7739e7E1adb25cd/1d0957d7f2ae01a2.png', name: '7天无理由退货' },
         ]
+      },
+      shop: {
+        logo: 'https://dss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=3697263530,885395973&fm=179&app=42&f=PNG?w=200&h=200&s=71560876ACB46C8657A797F10300501F',
+        name: '优米女孩',
+        sells: 230000,
+        goodsCount: 549,
+        score: [
+          { isBetter: true, name: '描述相符', score: 5 },
+          { isBetter: false, name: '价格合理', score: 1 },
+          { isBetter: true, name: '质量满意', score: 4.9 }
+        ]
       }
     })
   })

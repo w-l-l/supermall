@@ -4,6 +4,7 @@
     <scroll class="scroll" ref="scroll">
       <detail-swiper :top-imgs="imgs"></detail-swiper>
       <detail-base-info :goods="goods"></detail-base-info>
+      <detail-shop-info :shop="shop"></detail-shop-info>
     </scroll>
   </div>
 </template>
@@ -12,6 +13,7 @@
 import DetailNavBar from './childComps/DetailNabBar'
 import DetailSwiper from './childComps/DetailSwiper'
 import DetailBaseInfo from './childComps/DetailBaseInfo'
+import DetailShopInfo from './childComps/DetailShopInfo'
 
 import Scroll from 'components/common/scroll/Scroll'
 
@@ -24,7 +26,8 @@ export default {
     DetailNavBar,
     Scroll,
     DetailSwiper,
-    DetailBaseInfo
+    DetailBaseInfo,
+    DetailShopInfo
   },
   created() {
     this.id = this.$route.params.id
@@ -34,7 +37,8 @@ export default {
     return {
       id: 0,
       imgs: [],
-      goods: {}
+      goods: {},
+      shop: {}
     }
   },
   methods: {
@@ -44,6 +48,7 @@ export default {
       const res = await mockDetail()
       this.imgs = res.imgs
       this.goods = res.goods
+      this.shop = res.shop
     }
   }
 }
