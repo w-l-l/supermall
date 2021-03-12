@@ -32,6 +32,19 @@ export function mockDetail() {
           { isBetter: false, name: '价格合理', score: 1 },
           { isBetter: true, name: '质量满意', score: 4.9 }
         ]
+      },
+      detailInfo: {
+        desc: '小米11 5G游戏手机【10重好礼】 8G+256G 蓝色 55W充电器套装',
+        detailImage: {
+          key: '机型展示',
+          list: [
+            'https://img10.360buyimg.com/seckillcms/s500x500_jfs/t1/157536/15/12750/112602/6049e2a0E14cd4ffc/1c99e92c58659e55.jpg',
+            'https://img12.360buyimg.com/seckillcms/s500x500_jfs/t1/163803/35/1069/117920/5ff42e24Ed15cf59b/28d25fc366015356.jpg',
+            'https://img14.360buyimg.com/seckillcms/s500x500_jfs/t1/162034/3/11886/92909/604994dcE59922056/2eb80012b92a13c0.jpg',
+            'https://img13.360buyimg.com/seckillcms/s500x500_jfs/t1/168228/5/8191/133197/603b406eE280a9545/a90f7b3a2867ef90.jpg',
+            'https://img10.360buyimg.com/seckillcms/s500x500_jfs/t1/169095/7/11363/198486/60489555E5f3efded/176cb9945e39bde7.png'
+          ]
+        }
       }
     })
   })
