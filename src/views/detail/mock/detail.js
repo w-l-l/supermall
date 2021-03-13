@@ -45,6 +45,34 @@ export function mockDetail() {
             'https://img10.360buyimg.com/seckillcms/s500x500_jfs/t1/169095/7/11363/198486/60489555E5f3efded/176cb9945e39bde7.png'
           ]
         }
+      },
+      paramInfo: {
+        sizes: [
+          [
+            ['尺码', 'S', 'M', 'L', 'XL'],
+            ['胸围', '100', '104', '108', '112'],
+            ['袖长', '61', '62', '63', '64'],
+            ['裤长', '96', '97', '98', '99'],
+            ['肩宽', '36', '37', '38', '39'],
+            ['衣长', '54', '55', '56', '57']
+          ]
+        ],
+        infos: [
+          { key: '厚薄', value: '普通' },
+          { key: '厂名', value: '美衣梦莎服饰有限公司' },
+          { key: '颜色', value: '上衣+裤子' },
+          { key: '尺码', value: 'S,XL,L,M' },
+          { key: '衣长', value: '常规款（51-65cm）' },
+          { key: '季节', value: '秋季' },
+          { key: '厂址', value: '广州白云凉溪颐和路31号' },
+          { key: '材质', value: '聚酯纤维' },
+          { key: '领型', value: '其他领型' },
+          { key: '袖长', value: '长袖' },
+          { key: '款式', value: '衣裤套餐' },
+          { key: '风格', value: '通勤（OL）' },
+          { key: '潮流', value: '韩系' }
+        ],
+        image: 'https://img14.360buyimg.com/babel/s580x740_jfs/t1/123624/4/20139/166366/5fc065bfE4675d21b/40d2c7c4c506292c.jpg!cc_290x370.webp'
       }
     })
   })
