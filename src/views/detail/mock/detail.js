@@ -1,5 +1,11 @@
 // 模拟详情数据
 export function mockDetail() {
+  const goods = {
+    src: 'https://s2.mogucdn.com/mlcdn/c45406/180921_35985843l3g421leh4a8d22b9dgj5_640x960.jpg_360x480.v1cAC.40.webp',
+    title: '秋装新款韩版背心针织毛衣马甲长袖衬衫打底裤三件套省心套装',
+    price: 75.72,
+    cfav: 88
+  }
   return new Promise(resolve => {
     setTimeout(resolve, Math.ceil(Math.random() * 3), {
       imgs: [
@@ -88,7 +94,8 @@ export function mockDetail() {
           'https://img.alicdn.com/bao/uploaded/i1/47967555/TB2AGgQaEyfF1Jjy0FbXXXSupXa_!!47967555.jpg_180x180q90.jpg_.webp',
           'https://img.alicdn.com/bao/uploaded/i1/47967555/TB1Kky0bH1YBuNjSszeYXGblFXa_M2.SS2_100x100q90.jpg_.webp'
         ]
-      }
+      },
+      goodsList: new Array(10).fill(goods)
     })
   })
 }

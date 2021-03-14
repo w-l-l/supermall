@@ -2,12 +2,13 @@
   <div class="detail">
     <detail-nav-bar></detail-nav-bar>
     <scroll class="scroll" ref="scroll">
-      <detail-swiper :top-imgs="imgs"></detail-swiper>
-      <detail-base-info :goods="goods"></detail-base-info>
-      <detail-shop-info :shop="shop"></detail-shop-info>
-      <detail-goods-info :detail-info="detailInfo"></detail-goods-info>
-      <detail-param-info :param-info="paramInfo"></detail-param-info>
-      <detail-comment-info :comment-info="commentInfo"></detail-comment-info>
+      <detail-swiper :top-imgs="imgs" />
+      <detail-base-info :goods="goods" />
+      <detail-shop-info :shop="shop" />
+      <detail-goods-info :detail-info="detailInfo" />
+      <detail-param-info :param-info="paramInfo" />
+      <detail-comment-info :comment-info="commentInfo" />
+      <goods-list :goods="goodsList" />
     </scroll>
   </div>
 </template>
@@ -21,6 +22,7 @@ import DetailGoodsInfo from './childComps/DetailGoodsInfo'
 import DetailParamInfo from './childComps/DetailParamInfo'
 import DetailCommentInfo from './childComps/DetailCommentInfo'
 
+import GoodsList from 'components/content/goods/GoodsList'
 import Scroll from 'components/common/scroll/Scroll'
 
 // import { getDetail } from 'network/detail'
@@ -36,7 +38,8 @@ export default {
     DetailShopInfo,
     DetailGoodsInfo,
     DetailParamInfo,
-    DetailCommentInfo
+    DetailCommentInfo,
+    GoodsList
   },
   created() {
     this.id = this.$route.params.id
@@ -50,7 +53,8 @@ export default {
       shop: {},
       detailInfo: {},
       paramInfo: {},
-      commentInfo: {}
+      commentInfo: {},
+      goodsList: []
     }
   },
   methods: {
@@ -64,6 +68,7 @@ export default {
       this.detailInfo = res.detailInfo
       this.paramInfo = res.paramInfo
       this.commentInfo = res.commentInfo
+      this.goodsList = res.goodsList
     }
   }
 }
