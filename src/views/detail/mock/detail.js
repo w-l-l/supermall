@@ -73,6 +73,21 @@ export function mockDetail() {
           { key: '潮流', value: '韩系' }
         ],
         image: 'https://img14.360buyimg.com/babel/s580x740_jfs/t1/123624/4/20139/166366/5fc065bfE4675d21b/40d2c7c4c506292c.jpg!cc_290x370.webp'
+      },
+      commentInfo: {
+        user: {
+          avatar: 'http://gw.alicdn.com/tps/i3/TB1yeWeIFXXXXX5XFXXuAZJYXXX-210-210.png_50x50.jpg',
+          uname: '棒棒糖闯江湖'
+        },
+        content: '刚好合适，物美价廉，衣服面料很好，穿着很舒服，版型也好看，非常棒',
+        created: 1535694719,
+        style: '颜色：上衣+裤子 尺码：M',
+        images: [
+          'https://img.alicdn.com/bao/uploaded/i2/634491/O1CN01T9PnWc1j2vIMn6gk2_!!634491.jpg_180x180q90.jpg_.webp',
+          'https://img.alicdn.com/bao/uploaded/i1/48317215/O1CN01ehQZXZ23AWDj4DFIi_!!0-item_pic.jpg_180x180q90.jpg_.webp',
+          'https://img.alicdn.com/bao/uploaded/i1/47967555/TB2AGgQaEyfF1Jjy0FbXXXSupXa_!!47967555.jpg_180x180q90.jpg_.webp',
+          'https://img.alicdn.com/bao/uploaded/i1/47967555/TB1Kky0bH1YBuNjSszeYXGblFXa_M2.SS2_100x100q90.jpg_.webp'
+        ]
       }
     })
   })
