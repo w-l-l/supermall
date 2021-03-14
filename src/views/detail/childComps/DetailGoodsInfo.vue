@@ -7,7 +7,7 @@
     </div>
     <div class="info-key">{{ detailInfo.detailImage.key }}</div>
     <div class="info-list">
-      <img v-for="(item, index) in detailInfo.detailImage.list" :key="index" :src="item" alt="">
+      <img v-for="(item, index) in detailInfo.detailImage.list" :key="index" :src="item" alt="" @load="imgLoad">
     </div>
   </div>
 </template>
@@ -21,6 +21,17 @@ export default {
       default() {
         return {}
       }
+    }
+  },
+  data() {
+    return {
+      count: 0
+    }
+  },
+  methods: {
+    // 图片加载
+    imgLoad() {
+      if(++this.count === this.detailInfo.detailImage.list.length) this.$emit('imgLoad')
     }
   }
 }

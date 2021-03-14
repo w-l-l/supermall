@@ -1,14 +1,14 @@
 <template>
   <div class="detail">
-    <detail-nav-bar></detail-nav-bar>
-    <scroll class="scroll" ref="scroll">
+    <detail-nav-bar :currentIndex="currentIndex" @titleClick="titleClick" />
+    <scroll class="scroll" ref="scroll" :probe-type="3" @scroll="contentScroll">
       <detail-swiper :top-imgs="imgs" />
       <detail-base-info :goods="goods" />
       <detail-shop-info :shop="shop" />
-      <detail-goods-info :detail-info="detailInfo" />
-      <detail-param-info :param-info="paramInfo" />
-      <detail-comment-info :comment-info="commentInfo" />
-      <goods-list :goods="goodsList" />
+      <detail-goods-info :detail-info="detailInfo" @imgLoad="imgLoad" />
+      <detail-param-info ref="param" :param-info="paramInfo" />
+      <detail-comment-info ref="comment" :comment-info="commentInfo" />
+      <goods-list ref="recommend" :goods="goodsList" />
     </scroll>
   </div>
 </template>
@@ -54,7 +54,9 @@ export default {
       detailInfo: {},
       paramInfo: {},
       commentInfo: {},
-      goodsList: []
+      goodsList: [],
+      detailTops: [],
+      currentIndex: 0
     }
   },
   methods: {
@@ -69,6 +71,27 @@ export default {
       this.paramInfo = res.paramInfo
       this.commentInfo = res.commentInfo
       this.goodsList = res.goodsList
+    },
+    // goods图片加载完成
+    imgLoad() {
+      const { param, comment, recommend } = this.$refs
+      this.detailTops = [0, param.$el.offsetTop, comment.$el.offsetTop, recommend.$el.offsetTop, Number.MAX_VALUE]
+    },
+    // better-scroll滚动
+    contentScroll(position) {
+      const y = -position.y
+      const arr = this.detailTops
+      for (let i = 0, len = arr.length - 1; i < len; i++) {
+        if(arr[i] <= y && y < arr[i + 1]) {
+          if (this.currentIndex !== i) this.currentIndex = i
+          break
+        }
+      }
+    },
+    // title点击
+    titleClick(index) {
+      this.currentIndex = index
+      this.$refs.scroll.scrollTo(0, -this.detailTops[index])
     }
   }
 }
