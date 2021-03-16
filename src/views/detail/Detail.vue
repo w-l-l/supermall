@@ -11,6 +11,7 @@
       <goods-list ref="recommend" :goods="goodsList" />
     </scroll>
     <detail-bottom-bar></detail-bottom-bar>
+    <back-top @click.native="_backClick" v-show="isShowBackTop"></back-top>
   </div>
 </template>
 
@@ -28,7 +29,9 @@ import GoodsList from 'components/content/goods/GoodsList'
 import Scroll from 'components/common/scroll/Scroll'
 
 // import { getDetail } from 'network/detail'
-import { mockDetail } from './mock/detail';
+import { mockDetail } from './mock/detail'
+
+import { backTopMixin } from 'common/mixin'
 
 export default {
   name: 'Detail',
@@ -44,6 +47,7 @@ export default {
     GoodsList,
     DetailBottomBar
   },
+  mixins: [backTopMixin],
   created() {
     this.id = this.$route.params.id
     this.getDetail()
@@ -82,14 +86,16 @@ export default {
     },
     // better-scroll滚动
     contentScroll(position) {
-      const y = -position.y
-      const arr = this.detailTops
-      for (let i = 0, len = arr.length - 1; i < len; i++) {
-        if(arr[i] <= y && y < arr[i + 1]) {
-          if (this.currentIndex !== i) this.currentIndex = i
-          break
+      this._contentScroll(position, 1000).then(position => {
+        const y = -position.y
+        const arr = this.detailTops
+        for (let i = 0, len = arr.length - 1; i < len; i++) {
+          if(arr[i] <= y && y < arr[i + 1]) {
+            if (this.currentIndex !== i) this.currentIndex = i
+            break
+          }
         }
-      }
+      })
     },
     // title点击
     titleClick(index) {
