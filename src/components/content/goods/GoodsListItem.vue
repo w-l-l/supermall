@@ -23,6 +23,7 @@ export default {
   methods: {
     // 点击图片进入详情页
     itemClick() {
+      console.log(123)
       this.$router.push('/detail/11')
     }
   }

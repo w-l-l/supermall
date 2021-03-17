@@ -10,7 +10,7 @@
       <detail-comment-info ref="comment" :comment-info="commentInfo" />
       <goods-list ref="recommend" :goods="goodsList" />
     </scroll>
-    <detail-bottom-bar></detail-bottom-bar>
+    <detail-bottom-bar @addToCart="addToCart"></detail-bottom-bar>
     <back-top @click.native="_backClick" v-show="isShowBackTop"></back-top>
   </div>
 </template>
@@ -99,8 +99,11 @@ export default {
     },
     // title点击
     titleClick(index) {
-      this.currentIndex = index
       this.$refs.scroll.scrollTo(0, -this.detailTops[index])
+    },
+    // 添加购物车
+    addToCart() {
+      
     }
   }
 }
