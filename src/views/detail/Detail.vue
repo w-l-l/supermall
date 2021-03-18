@@ -32,6 +32,7 @@ import Scroll from 'components/common/scroll/Scroll'
 import { mockDetail } from './mock/detail'
 
 import { backTopMixin } from 'common/mixin'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'Detail',
@@ -67,10 +68,13 @@ export default {
     }
   },
   methods: {
+    ...mapActions({
+      addCart: 'addToCart'
+    }),
     // 获取详情数据
     async getDetail() {
       // const res = await getDetail(this.id)
-      const res = await mockDetail()
+      const res = await mockDetail(this.id)
       this.imgs = res.imgs
       this.goods = res.goods
       this.shop = res.shop
@@ -103,7 +107,16 @@ export default {
     },
     // 添加购物车
     addToCart() {
-      
+      const { id, src, title, desc, price } = this.goods
+      const goods = {
+        id,
+        src,
+        title,
+        desc,
+        price
+      }
+      // this.$store.dispatch('addToCart', goods)
+      this.addCart(goods)
     }
   }
 }

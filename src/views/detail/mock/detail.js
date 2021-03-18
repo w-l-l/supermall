@@ -1,11 +1,32 @@
 // 模拟详情数据
-export function mockDetail() {
-  const goods = {
-    src: 'https://s2.mogucdn.com/mlcdn/c45406/180921_35985843l3g421leh4a8d22b9dgj5_640x960.jpg_360x480.v1cAC.40.webp',
-    title: '秋装新款韩版背心针织毛衣马甲长袖衬衫打底裤三件套省心套装',
-    price: 75.72,
-    cfav: 88
+export function mockDetail(id) {
+  const goodsObj = {
+    1: {
+      id: 1,
+      src: 'https://s3.mogucdn.com/mlcdn/c45406/170901_0f2ej9bfcd1a2hla3934lh81j8792_468x702.jpg_280x374.v1cAC.40.webp',
+      title: 'the SAEM得鲜按压口红，用多少拧多少',
+      desc: '买一赠一',
+      price: 69,
+      cfav: 9
+    },
+    2: {
+      id: 2,
+      src: 'https://s2.mogucdn.com/mlcdn/c45406/180921_35985843l3g421leh4a8d22b9dgj5_640x960.jpg_360x480.v1cAC.40.webp',
+      title: '秋装新款韩版背心针织毛衣马甲长袖衬衫打底裤三件套省心套装',
+      desc: '买一赠一',
+      price: 75.72,
+      cfav: 88
+    },
+    3: {
+      id: 3,
+      src: 'https://s2.mogucdn.com/mlcdn/c45406/200325_456h2llfif520a1354ce2dea8i3ic_640x960.jpg_360x480.v1cAC.40.webp',
+      title: '限定21色眼影高光盘显色修容哑光珠光',
+      desc: '买一赠一',
+      price: 32,
+      cfav: 999
+    }
   }
+  const goods = goodsObj[id]
   return new Promise(resolve => {
     setTimeout(resolve, Math.ceil(Math.random() * 3), {
       imgs: [
@@ -16,8 +37,8 @@ export function mockDetail() {
         'https://img11.360buyimg.com/pop/s1180x940_jfs/t1/155528/27/20653/57960/603da32dE09998612/5689d335e6a19f1f.jpg.webp',
       ],
       goods: {
-        title: '中兴 ZTE V2020 Smart孝心版 星云灰128GB全网通 高清四摄 4G双卡双待时光机老年手机老人机智能手机',
-        newPrice: 39,
+        ...goods,
+        newPrice: goods.price,
         oldPrice: 55.52,
         discount: 7,
         columns: ['销量88', '收藏120人', '72小时发货'],

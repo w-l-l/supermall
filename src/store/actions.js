@@ -1,0 +1,17 @@
+import * as types from './mutations-types'
+
+const actions = {
+  addToCart({ state, commit }, info) {
+    // 购物车是否存在当前商品
+    const index = state.cartList.findIndex(item => item.id === info.id)
+    if (index !== -1) {
+      commit(types.INCREMENT_COUNT, index)
+    } else {
+      info.count = 1
+      info.checked = true
+      commit(types.ADD_TO_CART, info)
+    }
+  }
+}
+
+export default actions
