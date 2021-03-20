@@ -1,7 +1,7 @@
 <template>
   <div class="cart-list-item">
     <div class="item-select">
-      <check-button :checked="itemInfo.checked" @checkBtn="checkBtn"></check-button>
+      <check-button :checked="itemInfo.checked" @checkBtn="checkBtn" />
     </div>
     <div class="item-img">
       <img :src="itemInfo.src" alt="商品图片">

@@ -1,11 +1,12 @@
 <template>
   <div class="cart">
     <nav-bar class="nav-bar">
-      <div slot="center">购物车({{ cartList.length }})</div>
+      <div slot="center">购物车({{ cartLength }})</div>
     </nav-bar>
     <scroll ref="scroll" class="scroll">
       <cart-list :cartList="cartList" />
     </scroll>
+    <cart-bottom-bar />
   </div>
 </template>
 
@@ -14,18 +15,21 @@ import NavBar from 'components/common/navBar/NavBar'
 import Scroll from 'components/common/scroll/Scroll'
 
 import CartList from './childComps/CartList'
+import CartBottomBar from './childComps/CartBottomBar'
 
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 
 export default {
   name: 'Cart',
   components: {
     NavBar,
     Scroll,
-    CartList
+    CartList,
+    CartBottomBar
   },
   computed: {
-    ...mapState(['cartList'])
+    ...mapState(['cartList']),
+    ...mapGetters(['cartLength'])
   },
   // 进入页面更新better-scroll
   activated() {
