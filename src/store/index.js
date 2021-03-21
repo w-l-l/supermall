@@ -9,7 +9,7 @@ import { readCarData } from 'common/saveLocal'
 Vue.use(Vuex)
 
 const state = {
-  cartList: readCarData()
+  cartList: readCarData() // 读取本地购物车信息
 }
 
 const store =  new Vuex.Store({

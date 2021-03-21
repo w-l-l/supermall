@@ -116,7 +116,11 @@ export default {
         price
       }
       // this.$store.dispatch('addToCart', goods)
-      this.addCart(goods)
+      this.addCart(goods).then(() => {
+        this.$toast({
+          message: '添加购物车成功'
+        })
+      })
     }
   }
 }
