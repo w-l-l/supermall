@@ -1,5 +1,7 @@
 import * as types from './mutations-types'
 
+import { saveCarData } from 'common/saveLocal'
+
 const actions = {
   addToCart({ state, commit }, info) {
     // 购物车是否存在当前商品
@@ -11,6 +13,7 @@ const actions = {
       info.checked = true
       commit(types.ADD_TO_CART, info)
     }
+    saveCarData(state.cartList)
   }
 }
 

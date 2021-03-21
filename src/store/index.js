@@ -4,10 +4,12 @@ import actions from './actions'
 import mutations from './mutations'
 import getters from './getters'
 
+import { readCarData } from 'common/saveLocal'
+
 Vue.use(Vuex)
 
 const state = {
-  cartList: []
+  cartList: readCarData()
 }
 
 const store =  new Vuex.Store({
