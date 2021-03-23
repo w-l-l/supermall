@@ -4,7 +4,7 @@
       <check-button :checked="itemInfo.checked" @checkBtn="checkBtn" />
     </div>
     <div class="item-img">
-      <img :src="itemInfo.src" alt="商品图片">
+      <img v-lazy="itemInfo.src" alt="商品图片">
     </div>
     <div class="item-info">
       <div class="item-title">{{ itemInfo.title }}</div>
