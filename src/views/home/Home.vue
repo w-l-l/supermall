@@ -21,9 +21,9 @@ import TabControl from 'components/content/tabControl/TabControl'
 import GoodsList from 'components/content/goods/GoodsList'
 import Scroll from 'components/common/scroll/Scroll'
 
-import HomeSwiper from './childComponents/HomeSwiper'
-import RecommendView from './childComponents/RecommendView'
-import FeatureView from './childComponents/FeatureView'
+import HomeSwiper from './childComps/HomeSwiper'
+import RecommendView from './childComps/RecommendView'
+import FeatureView from './childComps/FeatureView'
 
 import { getHomeMultidata, getHomeGoods } from 'network/home'
 import { mockGoodsList } from './mock/goods'

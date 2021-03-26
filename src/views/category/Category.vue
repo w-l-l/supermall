@@ -1,112 +1,62 @@
 <template>
-  <!-- <h2>分类</h2> -->
-  <div class="warpper" ref="warpper">
-    <ul class="content">
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-      <li>1111111111111111111111</li>
-    </ul>
+  <div id="category">
+    <nav-bar class="nav-bar">
+      <div slot="center">商品分类</div>
+    </nav-bar>
+    <div class="content">
+      <tab-menu ref="tabMenu" :categories="categories" />
+    </div>
   </div>
 </template>
 
 <script>
-import BScroll from 'better-scroll'
+import NavBar from 'components/common/navBar/NavBar'
+
+import TabMenu from './childComps/TabMenu'
+
+import { getGoodsCategory } from './mock/category'
+
 export default {
   name: 'Category',
+  components: {
+    NavBar,
+    TabMenu
+  },
+  created() {
+    this.getGoodsCategory()
+  },
   data() {
     return {
-      scroll: null
+      categories: []
     }
   },
-  mounted() {
-    this.scroll = new BScroll(this.$refs.warpper, {
-      probeType: 3,
-      pullUpLoad: true
-    })
-    // this.scroll.on('scroll', console.log)
-    this.scroll.on('pullingUp', () => {
-      console.log('到底了')
-      this.scroll.finishPullUp()
-    })
+  methods: {
+    // 获取商品分类
+    async getGoodsCategory() {
+      this.categories = await getGoodsCategory()
+      this.$nextTick(this.$refs.tabMenu.refresh)
+    }
   }
 }
 </script>
 
 <style lang="less" scoped>
-.warpper{
-  height: 200px;
-  width: 100%;
-  background: red;
+#category {
+  height: 100vh;
+  position: relative;
   overflow: hidden;
+  background-color: #fff;
+  .nav-bar {
+    background-color: var(--color-tint);
+    font-weight: bold;
+    color: #fff;
+  }
+  .content {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 44px;
+    bottom: 49px;
+  }
 }
 </style>

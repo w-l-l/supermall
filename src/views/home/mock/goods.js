@@ -31,6 +31,6 @@ export function mockGoodsList(type, page) {
           list: new Array(page * 10).fill(goods[type])
         }
       })
-    }, Math.ceil(Math.random()*3) * 1000)
+    }, Math.ceil(Math.random() * 3) * 1000)
   })
 }
