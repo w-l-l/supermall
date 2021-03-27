@@ -116,7 +116,7 @@ export function mockDetail(id) {
           'https://img.alicdn.com/bao/uploaded/i1/47967555/TB1Kky0bH1YBuNjSszeYXGblFXa_M2.SS2_100x100q90.jpg_.webp'
         ]
       },
-      goodsList: new Array(10).fill(goods)
+      goodsList: Array(10).fill(goods)
     })
   })
 }

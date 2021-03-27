@@ -4,15 +4,20 @@
       <div slot="center">商品分类</div>
     </nav-bar>
     <div class="content">
-      <tab-menu ref="tabMenu" :categories="categories" />
+      <tab-menu ref="tabMenu" :categories="categories" @selectItem="selectItem" />
+      <scroll ref="scroll" class="scroll">
+        <tab-content-category :subcategories="subcategories" @refreshTabContent="refreshTabContent"></tab-content-category>
+      </scroll>
     </div>
   </div>
 </template>
 
 <script>
 import NavBar from 'components/common/navBar/NavBar'
+import Scroll from 'components/common/scroll/Scroll'
 
 import TabMenu from './childComps/TabMenu'
+import TabContentCategory from './childComps/TabContentCategory'
 
 import { getGoodsCategory } from './mock/category'
 
@@ -20,21 +25,40 @@ export default {
   name: 'Category',
   components: {
     NavBar,
-    TabMenu
+    TabMenu,
+    Scroll,
+    TabContentCategory
   },
   created() {
     this.getGoodsCategory()
   },
   data() {
     return {
-      categories: []
+      categories: [],
+      currentIndex: 0
+    } 
+  },
+  computed: {
+    subcategories() {
+      return this.categories[this.currentIndex]?.subcategories || []
     }
   },
   methods: {
     // 获取商品分类
     async getGoodsCategory() {
       this.categories = await getGoodsCategory()
-      this.$nextTick(this.$refs.tabMenu.refresh)
+      this.$nextTick(() => {
+        this.$refs.tabMenu.refresh()
+      })
+    },
+    // 选择大类
+    selectItem(index) {
+      this.currentIndex = index
+    },
+    // 刷新TabContentCategory的better-scroll
+    refreshTabContent() {
+      this.$refs.scroll.scrollTo(0, 0, 0)
+      this.$refs.scroll.refresh()
     }
   }
 }
@@ -57,6 +81,11 @@ export default {
     right: 0;
     top: 44px;
     bottom: 49px;
+    display: flex;
+    overflow: hidden;
+    .scroll {
+      flex: 1;
+    }
   }
 }
 </style>

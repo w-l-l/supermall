@@ -28,7 +28,7 @@ export function mockGoodsList(type, page) {
     setTimeout(() => {
       resolve({
         data: {
-          list: new Array(page * 10).fill(goods[type])
+          list: Array(page * 10).fill(goods[type])
         }
       })
     }, Math.ceil(Math.random() * 3) * 1000)
