@@ -8,7 +8,7 @@
       <home-swiper ref="swiper" :banners="banners" />
       <recommend-view :recommends="recommends" />
       <feature-view />
-      <tab-control class="tab-control2" ref="tabControl2" :titles="titles" @tabClick="tabClick" />
+      <tab-control ref="tabControl2" :titles="titles" @tabClick="tabClick" />
       <goods-list :goods="showGoods" />
     </scroll>
     <back-top @click.native="_backClick" v-show="isShowBackTop"></back-top>
