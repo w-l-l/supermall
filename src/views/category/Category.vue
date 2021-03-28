@@ -6,7 +6,8 @@
     <div class="content">
       <tab-menu ref="tabMenu" :categories="categories" @selectItem="selectItem" />
       <scroll ref="scroll" class="scroll">
-        <tab-content-category :subcategories="subcategories" @refreshTabContent="refreshTabContent"></tab-content-category>
+        <tab-content-category :subcategories="subcategories" @refreshTabContent="refreshTabContent" />
+        <tab-control :titles="['综合', '新品', '销量']" @tabClick="tabClick" />
       </scroll>
     </div>
   </div>
@@ -15,6 +16,7 @@
 <script>
 import NavBar from 'components/common/navBar/NavBar'
 import Scroll from 'components/common/scroll/Scroll'
+import TabControl from 'components/content/tabControl/TabControl'
 
 import TabMenu from './childComps/TabMenu'
 import TabContentCategory from './childComps/TabContentCategory'
@@ -27,7 +29,8 @@ export default {
     NavBar,
     TabMenu,
     Scroll,
-    TabContentCategory
+    TabContentCategory,
+    TabControl
   },
   created() {
     this.getGoodsCategory()
@@ -59,6 +62,10 @@ export default {
     refreshTabContent() {
       this.$refs.scroll.scrollTo(0, 0, 0)
       this.$refs.scroll.refresh()
+    },
+    // 点击tab-control
+    tabClick(index) {
+      console.log(index)
     }
   }
 }
