@@ -1,5 +1,5 @@
 <template>
-  <div id="home">
+  <div class="home">
     <nav-bar class="home-nav">
       <div slot="center">购物街</div>
     </nav-bar>
@@ -122,7 +122,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-#home {
+.home {
   position: relative;
   width: 100%;
   height: 100vh;
@@ -134,6 +134,7 @@ export default {
     z-index: 9;
     background-color: var(--color-tint);
     color: #fff;
+    font-weight: bold;
   }
   .tab-control1{
     position: relative;
