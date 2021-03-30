@@ -4,6 +4,7 @@
       <div slot="center">我的档案</div>
     </nav-bar>
     <user-info />
+    <account-info />
   </div>
 </template>
 
@@ -11,12 +12,14 @@
 import NavBar from 'components/common/navBar/NavBar'
 
 import UserInfo from './childComps/UserInfo'
+import AccountInfo from './childComps/AccountInfo'
 
 export default {
   name: 'Profile',
   components: {
     NavBar,
-    UserInfo
+    UserInfo,
+    AccountInfo
   }
 }
 </script>
